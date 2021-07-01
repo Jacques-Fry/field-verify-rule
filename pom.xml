@@ -6,7 +6,7 @@
 
     <groupId>com.huihe</groupId>
     <artifactId>field-length-rule-parent</artifactId>
-    <version>1.0.0.DEVELOPMENT</version>
+    <version>1.0.0.RELEASE</version>
     <packaging>pom</packaging>
     <modules>
         <module>field-length-rule-core</module>
