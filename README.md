@@ -2,7 +2,7 @@
 
 提供四种数据类型的字段验证规则，分别是验证字符串的@StringField、验证整数的@IntegerField、验证浮点数的@FloatField、验证双精度浮点数的@DoubleField，另外字符串验证提供额外的非空验证和自定义的正则表达式验证（长度和正则表达式互不影响会同时生效），可使用message参数来自定义错误信息。
 
-实体类添加注解实例
+实体类添加注解示例
 
 > 请注意：一定要使用类型对应的的验证规则注解，否则验证可能不会生效。
 
@@ -35,7 +35,9 @@ public class User implements Serializable, FieldLengthRule {
 }
 ```
 
-调用案例
+调用验证示例
+
+> 为确保业务环境的正常进行所以在设计上是需要手动使用业务对象.verify()调用验证函数。
 
 ```java
 @Test
@@ -46,6 +48,7 @@ public void test01() {
     user.setUsername("11@163.com");
     user.setPassword("密码");
     user.setAmount(1f);
+    // 调用验证
     user.verify();
     long endTime = System.currentTimeMillis();
     System.out.println("消耗时间: " + (endTime - startTime)+"ms");
