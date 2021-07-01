@@ -2,6 +2,19 @@
 
 提供四种数据类型的字段验证规则，分别是验证字符串的@StringField、验证整数的@IntegerField、验证浮点数的@FloatField、验证双精度浮点数的@DoubleField，另外字符串验证提供额外的非空验证和自定义的正则表达式验证（长度和正则表达式互不影响会同时生效），可使用message参数来自定义错误信息。
 
+包引用
+
+```xml
+<!--字段验证工具-->
+<dependency>
+    <groupId>com.huihe</groupId>
+    <artifactId>field-verify-rule-core</artifactId>
+    <version>1.0.2.RELEASE</version>
+</dependency>
+```
+
+
+
 实体类添加注解示例
 
 > 请注意：一定要使用类型对应的的验证规则注解，否则验证可能不会生效。
