@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.huihe</groupId>
-    <artifactId>field-length-rule-parent</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <artifactId>field-verify-rule-parent</artifactId>
+    <version>1.0.2.RELEASE</version>
     <packaging>pom</packaging>
     <modules>
-        <module>field-length-rule-core</module>
-        <module>field-length-rule-demo</module>
+        <module>field-verify-rule-core</module>
+        <module>field-verify-rule-demo</module>
     </modules>
 
     <properties>

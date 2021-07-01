@@ -1,11 +1,11 @@
-package com.huihe.flr.pojo;
+package com.huihe.fvr.pojo;
 
 
-import com.huihe.flr.annotation.DoubleField;
-import com.huihe.flr.annotation.FloatField;
-import com.huihe.flr.annotation.IntegerField;
-import com.huihe.flr.annotation.StringField;
-import com.huihe.flr.core.FieldLengthRule;
+import com.huihe.fvr.core.annotation.DoubleField;
+import com.huihe.fvr.core.annotation.FloatField;
+import com.huihe.fvr.core.annotation.IntegerField;
+import com.huihe.fvr.core.annotation.StringField;
+import com.huihe.fvr.core.FieldLengthRule;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +26,7 @@ public class User implements Serializable, FieldLengthRule {
     @IntegerField(name = "ID",min = 1,max = 10)
     private Integer id;
 
-    @StringField(name = "账号", max = 50, notnull = true)
+    @StringField(name = "账号", max = 50, notnull = true,regexp = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$")
     private String username;
 
     @StringField(name = "密码", max = 16, message = "密码不能超过16位")

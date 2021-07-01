@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.huihe</groupId>
-        <artifactId>field-length-rule-parent</artifactId>
-        <version>1.0.0.RELEASE</version>
+        <artifactId>field-verify-rule-parent</artifactId>
+        <version>1.0.2.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>field-length-rule-demo</artifactId>
+    <artifactId>field-verify-rule-demo</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -18,17 +18,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.huihe</groupId>
-            <artifactId>field-length-rule-core</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.3.1</version>
         </dependency>
 
         <dependency>
@@ -59,6 +60,12 @@
             <artifactId>junit</artifactId>
             <version>4.13</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.huihe</groupId>
+            <artifactId>field-verify-rule-core</artifactId>
+            <version>${parent.version}</version>
         </dependency>
     </dependencies>
 

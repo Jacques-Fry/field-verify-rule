@@ -1,4 +1,4 @@
-package com.huihe.flr.annotation;
+package com.huihe.fvr.core.annotation;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

@@ -1,4 +1,4 @@
-package com.huihe.flr.annotation;
+package com.huihe.fvr.core.annotation;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -6,7 +6,7 @@ import org.springframework.core.annotation.Order;
 import java.lang.annotation.*;
 
 /**
- * 字符串字段
+ * 整数字段
  *
  * @author Jacques·Fry
  * @version 1.0.0
@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public @interface StringField {
+public @interface FloatField {
     /**
      * 名称
      */
@@ -25,20 +25,15 @@ public @interface StringField {
     /**
      * 最小长度
      */
-    int min() default 0;
+    float min() default 0f;
 
     /**
      * 最大长度
      */
-    int max() default 255;
+    float max() default 99999999999f;
 
     /**
      * 验证错误信息
      */
     String message() default "";
-
-    /**
-     * 是否非空
-     */
-    boolean notnull() default false;
 }

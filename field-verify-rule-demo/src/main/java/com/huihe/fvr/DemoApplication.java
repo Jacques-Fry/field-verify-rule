@@ -1,4 +1,4 @@
-package com.huihe.flr;
+package com.huihe.fvr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

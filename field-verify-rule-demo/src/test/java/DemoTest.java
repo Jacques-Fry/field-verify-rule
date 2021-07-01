@@ -1,5 +1,5 @@
-import com.huihe.flr.DemoApplication;
-import com.huihe.flr.pojo.User;
+import com.huihe.fvr.DemoApplication;
+import com.huihe.fvr.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,10 +17,14 @@ public class DemoTest {
     @Test
     public void test01() {
         long startTime = System.currentTimeMillis();
-        User user = new User();
-        user.setUsername("dd");
-        user.setPassword("密码");
-        user.verify();
+        //IntStream.range(1,1000001).forEach(i->{
+            User user = new User();
+            user.setId(2);
+            user.setUsername("11@163.com");
+            user.setPassword("密码");
+             user.setAmount(1f);
+            user.verify();
+        // });
         long endTime = System.currentTimeMillis();
         System.out.println("消耗时间: " + (endTime - startTime)+"ms");
     }

@@ -1,4 +1,4 @@
-package com.huihe.flr.exception;
+package com.huihe.fvr.core.exception;
 
 /**
  * 字段限制异常
