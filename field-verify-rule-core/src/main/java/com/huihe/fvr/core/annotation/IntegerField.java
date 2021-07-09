@@ -23,12 +23,12 @@ public @interface IntegerField {
     String name();
 
     /**
-     * 最小长度
+     * 最小值
      */
     int min() default 0;
 
     /**
-     * 最大长度
+     * 最大长值
      */
     int max() default 999999999;
 

@@ -1,13 +1,12 @@
 package com.huihe.fvr.core;
 
-import com.huihe.fvr.core.annotation.DoubleField;
-import com.huihe.fvr.core.annotation.FloatField;
-import com.huihe.fvr.core.annotation.IntegerField;
-import com.huihe.fvr.core.annotation.StringField;
+import com.huihe.fvr.core.annotation.*;
 import com.huihe.fvr.core.exception.FieldLengthConstantException;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,7 +17,7 @@ import java.util.regex.Pattern;
  * @version 1.0.0
  * @since 2021/6/30 17:51
  */
-public interface FieldLengthRule {
+public interface FieldVerifyRule {
 
     /**
      * 处理字符串
@@ -144,8 +143,65 @@ public interface FieldLengthRule {
         }
     }
 
+
     /**
-     * 验证
+     * 处理字符串枚举
+     *
+     * @param field 字段
+     * @param o     对象数据
+     * @author Jacques·Fry
+     * @since 2021/07/09 11:25
+     */
+    static void handleStringEnum(Field field, Object o) throws IllegalAccessException {
+        StringEnumField rule = field.getAnnotation(StringEnumField.class);
+        Object data = field.get(o);
+        String value = null;
+        if (data != null) {
+            value = data.toString();
+        }
+        boolean exists = false;
+        // 枚举验证
+        for (String item : rule.value()) {
+            if (item.equals(value)) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            throw new FieldLengthConstantException(rule.name() + " 的可选值 " + Arrays.toString(rule.value()));
+        }
+    }
+
+    /**
+     * 处理整数枚举
+     *
+     * @param field 字段
+     * @param o     对象数据
+     * @author Jacques·Fry
+     * @since 2021/07/09 11:25
+     */
+    static void handleIntegerEnum(Field field, Object o) throws IllegalAccessException {
+        IntegerEnumField rule = field.getAnnotation(IntegerEnumField.class);
+        Object data = field.get(o);
+        int value = 0;
+        if (data != null) {
+            value = Integer.parseInt(data.toString());
+        }
+        boolean exists = false;
+        // 枚举验证
+        for (int item : rule.value()) {
+            if (item == value) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            throw new FieldLengthConstantException(rule.name() + " 的可选值 " + Arrays.toString(rule.value()));
+        }
+    }
+
+    /**
+     * 验证全部字段
      *
      * @author Jacques·Fry
      * @since 2021/06/30 19:01
@@ -159,19 +215,56 @@ public interface FieldLengthRule {
             // 遍历属性列表field
             for (Field field : fields) {
                 //设置允许通过反射访问私有变量
-                field.setAccessible(true);
-                if (field.isAnnotationPresent(StringField.class)) {
-                    handleString(field, this);
-                } else if (field.isAnnotationPresent(IntegerField.class)) {
-                    handleInteger(field, this);
-                } else if (field.isAnnotationPresent(DoubleField.class)) {
-                    handleDouble(field, this);
-                } else if (field.isAnnotationPresent(FloatField.class)) {
-                    handleFloat(field, this);
-                }
+                distribute(field,this);
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 验证指定字段
+     *
+     * @param fieldName 字段名
+     * @author Jacques·Fry
+     * @since 2021/07/09 13:19
+     */
+    default void verify(@NotNull String fieldName) {
+        try {
+            // 获取对象的class
+            Class<?> clazz = this.getClass();
+            // 获取对象的属性字段
+            Field field = clazz.getDeclaredField(fieldName);
+            distribute(field,this);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 分发
+     *
+     * @param field 字段
+     * @param o     o
+     * @author Jacques·Fry
+     * @since 2021/07/09 13:23
+     */
+    static void distribute(Field field,Object o) throws IllegalAccessException {
+        //设置允许通过反射访问私有变量
+        field.setAccessible(true);
+        if (field.isAnnotationPresent(StringField.class)) {
+            handleString(field, o);
+        } else if (field.isAnnotationPresent(IntegerField.class)) {
+            handleInteger(field, o);
+        } else if (field.isAnnotationPresent(DoubleField.class)) {
+            handleDouble(field, o);
+        } else if (field.isAnnotationPresent(FloatField.class)) {
+            handleFloat(field, o);
+        } else if (field.isAnnotationPresent(StringEnumField.class)) {
+            handleStringEnum(field, o);
+        } else if (field.isAnnotationPresent(IntegerEnumField.class)) {
+            handleIntegerEnum(field, o);
+        }
+    }
+
 }

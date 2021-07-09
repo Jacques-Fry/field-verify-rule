@@ -23,12 +23,12 @@ public @interface DoubleField {
     String name();
 
     /**
-     * 最小长度
+     * 最小值
      */
     double min() default 0d;
 
     /**
-     * 最大长度
+     * 最大值
      */
     double max() default 99999999999d;
 

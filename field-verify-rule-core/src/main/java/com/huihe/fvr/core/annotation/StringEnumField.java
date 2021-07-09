@@ -6,34 +6,30 @@ import org.springframework.core.annotation.Order;
 import java.lang.annotation.*;
 
 /**
- * 整数字段
+ * 字符串枚举验证
  *
  * @author Jacques·Fry
  * @version 1.0.0
- * @since 2021/6/30 16:39
+ * @since 2021/7/9 11:16
  */
 @Documented
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public @interface FloatField {
+public @interface StringEnumField {
     /**
      * 名称
      */
     String name();
 
     /**
-     * 最小值
+     * 枚举值
      */
-    float min() default 0f;
-
-    /**
-     * 最大值
-     */
-    float max() default 99999999999f;
+    String[] value();
 
     /**
      * 验证错误信息
      */
     String message() default "";
+
 }

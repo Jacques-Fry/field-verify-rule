@@ -1,11 +1,8 @@
 package com.huihe.fvr.pojo;
 
 
-import com.huihe.fvr.core.FieldLengthRule;
-import com.huihe.fvr.core.annotation.DoubleField;
-import com.huihe.fvr.core.annotation.FloatField;
-import com.huihe.fvr.core.annotation.IntegerField;
-import com.huihe.fvr.core.annotation.StringField;
+import com.huihe.fvr.core.FieldVerifyRule;
+import com.huihe.fvr.core.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +17,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class User implements Serializable, FieldLengthRule {
+public class User implements Serializable, FieldVerifyRule {
     private static final long serialVersionUID = 1L;
 
     @IntegerField(name = "ID", min = 1, max = 10)
@@ -37,5 +34,11 @@ public class User implements Serializable, FieldLengthRule {
 
     @FloatField(name = "信用额度", min = 1, max = 999)
     private Float amount;
+
+    @IntegerEnumField(name = "用户类型", value = {1, 2, 3},message = "用户类型只能是 1:普通 | 2:管理员 | 3:超级管理员")
+    private int type;
+
+    @StringEnumField(name = "性别", value = {"男", "女"})
+    private String sex;
 
 }

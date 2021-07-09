@@ -17,15 +17,21 @@ public class DemoTest {
     @Test
     public void test01() {
         long startTime = System.currentTimeMillis();
-        //IntStream.range(1,1000001).forEach(i->{
-            User user = new User();
-            user.setId(2);
-            user.setUsername("11@163.com");
-            user.setPassword("密码");
-             user.setAmount(1f);
-            user.verify();
+        // IntStream.range(1,1000001).forEach(i->{
+        User user = new User();
+        user.setId(2);
+        user.setUsername("11@163.com");
+        user.setPassword("密码");
+        user.setAmount(1f);
+        user.setType(0);
+        user.setSex("人妖");
+        // 验证单个字段
+        user.verify("username");
+        user.verify("sex");
+        // 验证所有字段
+        user.verify();
         // });
         long endTime = System.currentTimeMillis();
-        System.out.println("消耗时间: " + (endTime - startTime)+"ms");
+        System.out.println("消耗时间: " + (endTime - startTime) + "ms");
     }
 }
