@@ -17,7 +17,7 @@
 <dependency>
     <groupId>com.huihe</groupId>
     <artifactId>field-verify-rule-core</artifactId>
-    <version>1.0.3.RELEASE</version>
+    <version>1.1.3.RELEASE</version>
 </dependency>
 ```
 
