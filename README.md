@@ -2,7 +2,7 @@
 
 提供四种数据类型的字段验证规则，分别是验证字符串的[@StringField](/field-verify-rule-core/src/main/java/com/huihe/fvr/core/annotation/StringField.java)、验证整数的[@IntegerField](/field-verify-rule-core/src/main/java/com/huihe/fvr/core/annotation/IntegerField.java)、验证浮点数的[@FloatField](/field-verify-rule-core/src/main/java/com/huihe/fvr/core/annotation/FloatField.java)、验证双精度浮点数的[@DoubleField](/field-verify-rule-core/src/main/java/com/huihe/fvr/core/annotation/DoubleField.java)，另外字符串验证提供额外的非空验证和自定义的正则表达式验证（长度和正则表达式互不影响会同时生效），可使用message参数来自定义错误信息。
 
-#### 2.21.07.09更新v1.0.3.RELEASE
+#### 2.21.07.09更新v1.1.3.RELEASE
 
 1、新增支持字符串枚举类型的[@StringEnumField](/field-verify-rule-core/src/main/java/com/huihe/fvr/core/annotation/StringEnumField.java)和整数枚举类型的[@IntegerEnumField](./field-verify-rule-core/src/main/java/com/huihe/fvr/core/annotation/IntegerEnumField.java)
 
