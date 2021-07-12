@@ -1,7 +1,7 @@
 package com.huihe.fvr.core;
 
 import com.huihe.fvr.core.annotation.*;
-import com.huihe.fvr.core.exception.FieldLengthConstantException;
+import com.huihe.fvr.core.exception.FieldVerifyRuleException;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.constraints.NotNull;
@@ -36,7 +36,7 @@ public interface FieldVerifyRule {
         }
         // 非空验证
         if (rule.notnull() && StringUtils.isBlank(value)) {
-            throw new FieldLengthConstantException(rule.name() + " 不能为空");
+            throw new FieldVerifyRuleException(rule.name() + " 不能为空");
         }
         int length = 0;
         if (StringUtils.isNotBlank(value)) {
@@ -47,9 +47,9 @@ public interface FieldVerifyRule {
                 // 字符串是否与正则表达式相匹配
                 if (!matcher.matches()) {
                     if (StringUtils.isNotBlank(rule.message())) {
-                        throw new FieldLengthConstantException(rule.message());
+                        throw new FieldVerifyRuleException(rule.message());
                     } else {
-                        throw new FieldLengthConstantException(rule.name() + " 不符合规则");
+                        throw new FieldVerifyRuleException(rule.name() + " 不符合规则");
                     }
                 }
             }
@@ -58,11 +58,11 @@ public interface FieldVerifyRule {
         // 长度验证
         if (length < rule.min() || length > rule.max()) {
             if (StringUtils.isNotBlank(rule.message())) {
-                throw new FieldLengthConstantException(rule.message());
+                throw new FieldVerifyRuleException(rule.message());
             } else if (rule.min() <= 0) {
-                throw new FieldLengthConstantException(rule.name() + " 不能超过" + rule.max() + " 个字符");
+                throw new FieldVerifyRuleException(rule.name() + " 不能超过" + rule.max() + " 个字符");
             } else {
-                throw new FieldLengthConstantException(rule.name() + " 的字符长度范围在 " + rule.min() + "-" + rule.max() + " 之间");
+                throw new FieldVerifyRuleException(rule.name() + " 的字符长度范围在 " + rule.min() + "-" + rule.max() + " 之间");
             }
         }
 
@@ -86,9 +86,9 @@ public interface FieldVerifyRule {
         // 长度验证
         if (value < rule.min() || value > rule.max()) {
             if (StringUtils.isNotBlank(rule.message())) {
-                throw new FieldLengthConstantException(rule.message());
+                throw new FieldVerifyRuleException(rule.message());
             } else {
-                throw new FieldLengthConstantException(rule.name() + " 的范围在 " + rule.min() + "-" + rule.max() + " 之间");
+                throw new FieldVerifyRuleException(rule.name() + " 的范围在 " + rule.min() + "-" + rule.max() + " 之间");
             }
         }
     }
@@ -111,9 +111,9 @@ public interface FieldVerifyRule {
         // 长度验证
         if (value < rule.min() || value > rule.max()) {
             if (StringUtils.isNotBlank(rule.message())) {
-                throw new FieldLengthConstantException(rule.message());
+                throw new FieldVerifyRuleException(rule.message());
             } else {
-                throw new FieldLengthConstantException(rule.name() + " 的范围在 " + rule.min() + "-" + rule.max() + " 之间");
+                throw new FieldVerifyRuleException(rule.name() + " 的范围在 " + rule.min() + "-" + rule.max() + " 之间");
             }
         }
     }
@@ -136,9 +136,9 @@ public interface FieldVerifyRule {
         // 长度验证
         if (value < rule.min() || value > rule.max()) {
             if (StringUtils.isNotBlank(rule.message())) {
-                throw new FieldLengthConstantException(rule.message());
+                throw new FieldVerifyRuleException(rule.message());
             } else {
-                throw new FieldLengthConstantException(rule.name() + " 的范围在 " + rule.min() + "-" + rule.max() + " 之间");
+                throw new FieldVerifyRuleException(rule.name() + " 的范围在 " + rule.min() + "-" + rule.max() + " 之间");
             }
         }
     }
@@ -168,7 +168,7 @@ public interface FieldVerifyRule {
             }
         }
         if (!exists) {
-            throw new FieldLengthConstantException(rule.name() + " 的可选值 " + Arrays.toString(rule.value()));
+            throw new FieldVerifyRuleException(rule.name() + " 的可选值 " + Arrays.toString(rule.value()));
         }
     }
 
@@ -196,7 +196,7 @@ public interface FieldVerifyRule {
             }
         }
         if (!exists) {
-            throw new FieldLengthConstantException(rule.name() + " 的可选值 " + Arrays.toString(rule.value()));
+            throw new FieldVerifyRuleException(rule.name() + " 的可选值 " + Arrays.toString(rule.value()));
         }
     }
 

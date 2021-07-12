@@ -7,9 +7,9 @@ package com.huihe.fvr.core.exception;
  * @version 1.0.0
  * @since 2021/6/30 16:40
  */
-public class FieldLengthConstantException extends RuntimeException{
+public class FieldVerifyRuleException extends RuntimeException{
     private static final long serialVersionUID = 1L;
-    public FieldLengthConstantException(String message) {
+    public FieldVerifyRuleException(String message) {
         super(message);
     }
 }
